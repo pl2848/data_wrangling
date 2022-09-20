@@ -1,21 +1,59 @@
 ---
-title: "Simple document"
-output: html_document
+title: "Data Wrangling"
+output: github_document
 ---
 
-I'm an R Markdown document! 
+# Data import: CSVs
 
-# Section 1
+Let's import data using the "readr" package
 
-Here's a **code chunk** that samples from 
-a _normal distribution_:
 
+
+# loading the library
 ```{r}
-samp = rnorm(100)
-length(samp)
+library(tidyverse)
+
 ```
 
-# Section 2
+# get current working path
+```{r}
+getwd()
+```
 
-I can take the mean of the sample, too!
-The mean is `r mean(samp)`.
+```{r}
+litters_df = read_csv("data_import_examples/FAS_litters.csv")
+# To change the variable names and make it more tidy
+litters_df = janitor::clean_names(litters_df)
+```
+
+
+Look at the data
+
+```{r}
+litters_df
+
+head(litters_df)
+tail(litters_df)
+```
+
+```{r, eval = FALSE}
+View(litters_df)
+
+```
+
+```{r}
+skimr::skim(litters_df)
+```
+
+
+`read_csv` options ..
+
+```{r}
+read_csv("data_import_examples/FAS_litters.csv", na = c("", "NA", 999, 88))
+```
+
+# Other files formats
+
+
+
+
